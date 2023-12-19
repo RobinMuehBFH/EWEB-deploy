@@ -1,0 +1,49 @@
+import { Component, OnInit } from '@angular/core';
+import { AuthenticationService } from 'src/app/services/authentication.service';
+import { CommonFunctionsService } from 'src/app/services/common-functions.service';
+
+@Component({
+  selector: 'app-navbar',
+  templateUrl: './navbar.component.html',
+  styleUrls: ['./navbar.component.css']
+})
+export class NavbarComponent implements OnInit {
+  private user: any;
+  reload: boolean | undefined;
+
+  constructor(public authenticationService: AuthenticationService, public commonFunctionsService: CommonFunctionsService) { }
+
+  ngOnInit(): void {
+  const hamburger = document.querySelector(".hamburger");
+  const navLinks = document.querySelector(".nav-links");
+  const links = document.querySelectorAll(".nav-links li");
+    setTimeout(() => {
+      if(hamburger && navLinks && links){
+        hamburger!.addEventListener('click', ()=>{
+          //Animate Links
+          navLinks!.classList.toggle("open");
+          links.forEach(link => {
+              link.classList.toggle("fade");
+          });
+
+           //Hamburger Animation
+           hamburger!.classList.toggle("toggle");
+       });
+       navLinks!.addEventListener('click', ()=>{
+        //Animate Links
+        navLinks!.classList.toggle("open");
+        links.forEach(link => {
+            link.classList.toggle("fade");
+        });
+
+         //Hamburger Animation
+         hamburger!.classList.toggle("toggle");
+     });
+      }
+    }, 1000);
+  }
+
+  logout():void{
+    this.authenticationService.logout();
+  }
+}

@@ -1,0 +1,12 @@
+body{
+    margin: 0;
+}
+
+.bodypart-navbar{
+    display: block;
+    padding-top: 6rem;
+}
+
+.bodypart-no-navbar{
+    display: contents;
+}
